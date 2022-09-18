@@ -1,4 +1,6 @@
+import { memo } from "react";
 import { MovieCard } from "./MovieCard";
+import lodash from 'lodash';
 
 interface ContentProps {
   selectedGenre: {
@@ -36,3 +38,7 @@ export function Content({ selectedGenre, movies }: ContentProps) {
     </div>
   )
 }
+
+export const ProductItem = memo(Content, (prevProps, nextProps) => {
+  return lodash.isEqual(prevProps.movies, nextProps.movies)
+})
