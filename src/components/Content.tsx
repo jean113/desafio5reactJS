@@ -1,6 +1,5 @@
 import { memo } from "react";
-import { MovieCard } from "./MovieCard";
-import lodash from 'lodash';
+import { MovieCardItem } from "./MovieCard";
 
 interface ContentProps {
   selectedGenre: {
@@ -31,14 +30,10 @@ export function Content({ selectedGenre, movies }: ContentProps) {
       <main>
         <div className="movies-list">
           {movies.map(movie => (
-            <MovieCard key={movie.imdbID} title={movie.Title} poster={movie.Poster} runtime={movie.Runtime} rating={movie.Ratings[0].Value} />
+            <MovieCardItem key={movie.imdbID} title={movie.Title} poster={movie.Poster} runtime={movie.Runtime} rating={movie.Ratings[0].Value} />
           ))}
         </div>
       </main>
     </div>
   )
 }
-
-export const ProductItem = memo(Content, (prevProps, nextProps) => {
-  return lodash.isEqual(prevProps.movies, nextProps.movies)
-})
